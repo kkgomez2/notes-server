@@ -23,12 +23,18 @@ export const getNote = async (req, res) => {
 
 export const createNote = async (req, res) => {
   try {
+    console.log(req);
+    console.log(req.body);
+
     const { title, content } = req.body;
+    console.log(title);
+    console.log(content);
     const newNote = new Note({ title, content });
 
     const savedNote = await newNote.save();
     res.status(201).json(savedNote);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
